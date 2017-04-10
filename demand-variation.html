@@ -1,0 +1,135 @@
+<html>
+	<head>
+		<title>Demand Variation</title>
+		<meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <link rel="stylesheet" type="text/css" href="css/dataTables.bootstrap.min.css">
+	    <link rel="stylesheet" type="text/css" href="jquery-ui/jquery-ui.css">        
+	    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	    <link rel="stylesheet" type="text/css" href="css/bootstrap-datetimepicker.min.css">
+	    <link rel="stylesheet" type="text/css" href="css/dataTables.fixedHeader.css">
+	    <link rel="stylesheet" type="text/css" href="css/layout-default-latest.css">
+	    <link rel="stylesheet" type="text/css" href="css/toastr.css">
+	    <link rel="stylesheet" type="text/css" href="css/daterangepicker.css">
+	    <link rel="stylesheet" type="text/css" href="css/common.css">
+
+	    <script src="js/lib/jquery-1.11.1.min.js"></script>
+	    <script src="js/lib/bootstrap.min.js"></script>
+	    <script src="jquery-ui/jquery-ui.js"></script>
+	    <script src="js/lib/jquery.dataTables.js"></script>
+	    <script src="js/lib/dataTables.bootstrap.min.js"></script>    
+	    <script src="js/lib/moment-with-locales.min.js"></script>
+	    <script src="js/lib/moment-timezone-with-data.min.js"></script>
+	    <script src="js/lib/dataTables.fixedHeader.js"></script>
+	    <script src="js/lib/toastr.js"></script>
+	    <script src="js/lib/jquery.layout-latest.js"></script>
+	    <script src="js/lib/highcharts.js"></script>
+	    <script src="js/lib/data.js"></script>
+	    <script src="js/lib/exporting.js"></script>
+	    <script src="js/lib/export-csv.js"></script>
+	    <script src="js/lib/jquery.plugin.js"></script>
+	    <script src="js/lib/jquery.daterangepicker.js"></script>
+	    <script src="js/lib/jquery.dialogextend.js"></script>
+	    <script src="js/src/common.js"></script>
+	    <script src="js/src/demand-variation.js"></script>
+	</head>
+	
+	<body>
+
+		<!-- Modal -->
+		<div class="modal fade" id="subscribe-modal" tabindex="-1" role="dialog" aria-labelledby="subscribe-modal">
+			<div class="modal-dialog" role="document">
+			    <div class="modal-content">
+				    <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				        <h4 class="modal-title">Subscribe new report</h4>
+				    </div>
+				     	<div class="modal-body">
+				     		<form>
+								<div class="form-group">
+								    <input type="text" class="form-control" id="upper-thres" placeholder="Upper Threshold">
+								</div>
+								<div class="form-group">
+								    <input type="text" class="form-control" id="lower-thres" placeholder="Lower Threshold">
+								</div>
+								<div class="form-group">
+								    <input type="text" class="form-control date date-range" id="subscribe-range" placeholder="Set time range"></input>
+								</div>
+							</form>
+
+
+				     	</div>
+				    <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				        <button type="button" class="btn btn-primary" id="subscribe">Save</button>
+				    </div>
+			    </div>
+			</div>
+		</div>
+
+		<!-- delete note modal -->
+	    <div class="modal fade" id="unsubscribe-modal" aria-labelledby="unsubscribe-modal" aria-hidden="true">
+	        <div class="modal-dialog" role="document">
+	            <div class="modal-content">
+	                <div class="modal-header">
+	                    <h4 class="modal-title">Confirmation</h4>
+	                </div>
+	                <div class="modal-footer">
+	                <button type="button" class="btn btn-danger" id="confirm-unsubscribe">Unsubscribe</button>
+	                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+
+	    <header id="app-header" title-value="Singapore Demand Variation"></header>
+
+		<div  style="padding:1%"> 
+			<div class="row dv-data-setting-bar" style="margin-top:1%;margin-left:0.1%">
+			    <div class="col-xs-2" style="padding-left:0%">
+			    	<select class="data-option form-control">
+			        	<option value="latest" class="lastest-data">Latest Data</option>
+			        	<option value="history" class="historical-data">Historical Data</option>
+			    	</select>
+			    </div>
+			    <div class="col-xs-2">
+			    	<input type="text" class="form-control resolution" placeholder="Resolution (hour)" disabled></input>
+			    </div>
+			    <div class="col-xs-3">
+			    	<input type="text" class="form-control date date-range" id="data-range" placeholder="Select time range" disabled></input>
+			    </div>
+			    <div class="col-xs-1">
+			    	<button type="button" class="btn btn-primary query-data" disabled>Query</button>
+			    </div>
+			    <div class="col-xs-4">
+			    	
+			    </div>
+			</div>
+
+			<div class="data-graph"></div>
+
+			<div style="margin-top:1%">
+				<div>
+					<button type="button" class="btn btn-primary" id="open-subscribe"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Subscribe</button>
+					<button type="button" class="btn btn-danger" id="open-unsubscribe"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Unsubscribe</button>
+				</div>
+				<table id="demand-table" class="table display table-bordered data-table table-striped" cellspacing="0" width="100%">
+	                <thead>
+	                	<tr>
+	                		<th>Subscription Time</th>
+	                        <th>From</th>
+	                        <th>To</th>
+	                        <th>Parameters</th>
+	                        <th>Status</th>
+	                        <th>Report</th>
+	                    </tr>
+	                </thead>     
+	            </table>
+			</div>
+		</div>
+		
+	</body>
+	   
+
+
+</html>

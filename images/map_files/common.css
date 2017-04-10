@@ -1,0 +1,12 @@
+.button-panel {
+	float: right;
+    margin-top: 10px;
+    margin-right: 15px;
+    font-size: 20px;
+    color:#757575;
+}
+
+.button-panel:hover {
+    color:#000;
+}
+

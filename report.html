@@ -1,0 +1,77 @@
+<html>
+	<head>
+		<title>Reports</title>
+		<meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <link rel="stylesheet" type="text/css" href="css/dataTables.bootstrap.min.css">
+	    <link rel="stylesheet" type="text/css" href="jquery-ui/jquery-ui.css">        
+	    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	    <link rel="stylesheet" type="text/css" href="css/toastr.css">
+	    <link rel="stylesheet" type="text/css" href="css/common.css">
+
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
+        <!-- <link href="assets/css/components.css" rel="stylesheet" type="text/css" /> -->
+        <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/pages.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
+
+	    <script src="js/lib/jquery-1.11.1.min.js"></script>
+	    <script src="js/lib/bootstrap.min.js"></script>
+	    <script src="jquery-ui/jquery-ui.js"></script>
+	    <script src="js/lib/highcharts.js"></script>
+	    <script src="js/lib/jquery.dataTables.js"></script>
+	    <script src="js/lib/dataTables.bootstrap.min.js"></script>    
+	    <script src="js/lib/moment-with-locales.min.js"></script>
+	    <script src="js/lib/moment-timezone-with-data.min.js"></script>
+	    <script src="js/lib/toastr.js"></script>
+	    <script src="js/src/common.js"></script>
+	    <script src="js/src/report.js"></script>
+
+	</head>
+
+	<body>
+
+        <header id="app-header" title-value="AMA Reports" style="background:white;color:black"></header>
+
+        <div class="left side-menu">
+            <div class="sidebar-inner slimscrollleft">
+                <div id="sidebar-menu">
+                    <ul>
+                        <li class="has_sub ">
+                            <a class="waves-effect go-folder-side" value="meter"><i><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></i><span> Meter Reports </span> </a>
+                        </li>
+                        <li class="has_sub ">
+                            <a class="waves-effect go-folder-side" value="data"><i><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></i><span> Data Reports </span> </a>
+                        </li>
+                        <li class="has_sub">
+                            <a class="waves-effect go-folder-side" value="meta"><i><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></i><span> Meta Reports </span></a>
+                        </li>
+                        <li class="has_sub">
+                            <a class="waves-effect go-folder-side" value="quality"><i><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></i><span> Data Quality </span></a>
+                        </li>
+                        <li class="has_sub">
+                            <a class="waves-effect go-folder-side" value="daily"><i><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></i><span> Daily Reports </span></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+        <div class="content-page">
+        	<table id="file-table" class="table display table-bordered data-table table-striped" style="margin:0 !important">
+                <thead>
+                	<tr>
+                		<th>ts</th>
+                		<th>Name</th>
+                        <th>Last modified</th>
+                        <th>Size</th>
+                    </tr>
+                </thead>     
+            </table>
+        </div>
+    </body>
+
+</html>
